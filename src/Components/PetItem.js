@@ -1,4 +1,6 @@
-export default function PetItem({ pet, handleAdopt }) {
+import { observer } from "mobx-react";
+
+function PetItem({ pet, handleAdopt }) {
   return (
     <div class="col-lg-4 col-md-8 col-sm-10">
       <div class="single-doctor">
@@ -17,3 +19,4 @@ export default function PetItem({ pet, handleAdopt }) {
     </div>
   );
 }
+export default observer(PetItem);

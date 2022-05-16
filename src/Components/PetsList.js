@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import PetItem from "./PetItem";
+import petStore from "../petStore";
+import { observer } from "mobx-react-lite";
 
-function PetsList({ petsData }) {
+function PetsList() {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("");
-  const [pets, setPets] = useState(petsData);
 
-  const handleAdopt = (petId) =>
-    setPets(pets.filter((pet) => pet.id !== petId));
+  const handleAdopt = (petId) => petStore.handleAdopt(petId);
 
-  const petList = pets
+  const petList = petStore.pets
     .filter(
       (pet) =>
         pet.name.toLowerCase().includes(query.toLowerCase()) &&
@@ -58,4 +58,4 @@ function PetsList({ petsData }) {
     </section>
   );
 }
-export default PetsList;
+export default observer(PetsList);
